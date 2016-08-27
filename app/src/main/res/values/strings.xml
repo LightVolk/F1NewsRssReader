@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">F1NewsRssReader</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_page">PageActivity</string>
+</resources>
