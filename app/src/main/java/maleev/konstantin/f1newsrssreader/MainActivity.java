@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                // loadFeeds();
-                _loader.loadFeeds();
-
+             //   _loader.loadFeeds();
+                swipe.setRefreshing(false);
             }
         });
 
