@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 */
 
 
-
+/*
         final SwipeRefreshLayout swipe= (SwipeRefreshLayout) findViewById(R.id.swipe);
         _loader=new RssLoader(getApplicationContext(),this,swipe);
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 swipe.setRefreshing(false);
             }
         });
-
+*/
 
     }
 
