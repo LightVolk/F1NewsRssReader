@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="refresh_news">Обновить ленту</string>
+    <string name="lets_refresh_news_feed">Обновляю ленту</string>
+</resources>

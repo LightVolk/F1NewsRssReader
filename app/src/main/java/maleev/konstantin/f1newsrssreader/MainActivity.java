@@ -1,5 +1,6 @@
 package maleev.konstantin.f1newsrssreader;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
+      /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main_news, menu);
         return true;
     }
 
@@ -81,6 +83,33 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            final RssLoader loader=new RssLoader(getApplicationContext(),this);
+            loader.loadFeeds();
+            ListView listView= (ListView) findViewById(R.id.listViewNews);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                    if(loader.getRssItems().isEmpty())
+                    {
+                        return;
+                    }
+
+                    RssItem item=loader.getRssItems().get(i);
+                    if(item==null)
+                        return;
+
+                    //start new activity with text of news
+                    Intent launchBrowser = new Intent(getApplicationContext(), PageActivity.class);
+                    String goUrl=item.getLink();
+                    launchBrowser.putExtra("url", goUrl);
+
+                    startActivity(launchBrowser);
+                }
+            });
+            Toast.makeText(this, R.string.lets_refresh_news_feed, Toast.LENGTH_SHORT).show();
             return true;
         }
 

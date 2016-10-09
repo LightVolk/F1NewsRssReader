@@ -6,4 +6,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="refresh_news">Обновить ленту</string>
+    <string name="lets_refresh_news_feed">Обновляю ленту</string>
 </resources>

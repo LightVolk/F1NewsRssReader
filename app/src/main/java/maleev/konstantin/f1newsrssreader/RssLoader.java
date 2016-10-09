@@ -29,6 +29,7 @@ public class RssLoader {
     private  Context _context;
     private  Activity _activity;
     private  SwipeRefreshLayout _swipeRefresh;
+    private int _loadCount=0;
     public RssLoader(Context context, Activity activity, SwipeRefreshLayout swipeRefreshLayout)
     {
         _context=context;
@@ -89,6 +90,10 @@ public class RssLoader {
                     @Override
                     public void onFailure(String message) {
                         Toast.makeText(_context, "Error: "+message, Toast.LENGTH_SHORT).show();
+                        loadFeeds();
+
+                        if(_loadCount>=5)
+                            return;
                     }
                 });
 

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="maleev.konstantin.f1newsrssreader.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/refresh_news"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/refresh_news"
         app:showAsAction="never" />
 </menu>
