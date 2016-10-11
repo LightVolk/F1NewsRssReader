@@ -17,10 +17,11 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
-
-        <ListView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listViewNews"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listViewNews" />
+            />
+
     </LinearLayout>
 </RelativeLayout>

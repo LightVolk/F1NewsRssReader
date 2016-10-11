@@ -43,6 +43,57 @@ public class RssLoader {
         _activity=activity;
     }
 
+public ArrayList<String> loadFeedsArr()
+{
+    final ArrayList<String> arrayList=new ArrayList<String>();
+
+    //you can also pass multiple urls
+    String[] urlArr = {"http://www.f1news.ru/export/news.xml"};
+    new RssReader(_context)
+            .showDialog(false)
+            .urls(urlArr)
+            .parse(new OnRssLoadListener() {
+                @Override
+                public void onSuccess(List<RssItem> rssItems) {
+
+                    Log.i("RSS","Success!");
+
+
+                    if(rssItems.size()!=0)
+                    {
+                        arrayList.clear();
+                        RssItems.clear();
+                    }
+
+                    Toast.makeText(_context, rssItems.get(0).getTitle(), Toast.LENGTH_SHORT).show();
+
+                    for (RssItem item:rssItems
+                            ) {
+                        RssItems.add(item);
+                        arrayList.add(item.getTitle());
+                        Log.i("Item:",item.getTitle());
+                    }
+
+
+                }
+
+                @Override
+                public void onFailure(String message) {
+                    Toast.makeText(_context, "Error: "+message, Toast.LENGTH_SHORT).show();
+                   ArrayList<String> arrayList= loadFeedsArr();
+
+                    if(_loadCount>=5)
+                        return;
+                }
+            });
+
+    while (arrayList.isEmpty())
+    {
+
+    }
+
+    return arrayList;
+}
 
     //load feeds
     public void loadFeeds() {

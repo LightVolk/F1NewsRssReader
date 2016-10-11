@@ -37,10 +37,11 @@
         android:layout_width="wrap_content" />
     </android.support.design.widget.CoordinatorLayout>
 
-<TextView
+    <TextView
 android:id="@android:id/empty"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     />
+
 </FrameLayout>
 <!--</android.support.design.widget.CoordinatorLayout>-->
