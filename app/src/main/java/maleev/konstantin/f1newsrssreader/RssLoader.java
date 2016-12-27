@@ -124,8 +124,9 @@ public ArrayList<String> loadFeedsArr()
                         for (RssItem item:rssItems
                                 ) {
                             RssItems.add(item);
-                            titles.add(item.getTitle());
+                            titles.add(item.getTitle()+"\n"+item.getPubDate());
                             Log.i("Item:",item.getTitle());
+
                         }
 
 //tvRssElement
