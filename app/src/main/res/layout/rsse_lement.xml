@@ -6,5 +6,6 @@
     android:paddingTop="2dip"
     android:paddingBottom="3dip"
     android:maxLines="5"
-
+    android:maxLength="70"
+    android:ellipsize="end"
     />

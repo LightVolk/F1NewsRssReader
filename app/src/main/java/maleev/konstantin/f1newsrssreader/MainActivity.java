@@ -23,6 +23,8 @@ import com.crazyhitty.chdev.ks.rssmanager.RssReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import maleev.konstantin.f1newsrssreader.Adapters.SharedData;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -83,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            if(SharedData.adapter!=null)
+            {
+                SharedData.adapter.clear();
+            }
+
             final RssLoader loader=new RssLoader(getApplicationContext(),this);
             loader.loadFeeds();
             ListView listView= (ListView) findViewById(R.id.listViewNews);

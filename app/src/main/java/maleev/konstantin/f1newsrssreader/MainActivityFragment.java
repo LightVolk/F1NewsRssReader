@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MainActivityFragment extends Fragment {
         loader.loadFeeds();
 
         ListView listView= (ListView) view.findViewById(R.id.listViewNews);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

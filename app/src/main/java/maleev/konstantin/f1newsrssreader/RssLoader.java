@@ -15,6 +15,8 @@ import com.crazyhitty.chdev.ks.rssmanager.RssReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import maleev.konstantin.f1newsrssreader.Adapters.SharedData;
+
 /**
  * Created by Simplevolk on 27.08.2016.
  */
@@ -126,16 +128,21 @@ public ArrayList<String> loadFeedsArr()
                             Log.i("Item:",item.getTitle());
                         }
 
-
-                        ArrayAdapter<String> adapter=new ArrayAdapter<String>(_context,R.layout.support_simple_spinner_dropdown_item,titles);
+//tvRssElement
+                        ArrayAdapter<String> adapter=new ArrayAdapter<String>(_context,R.layout.rsse_lement,titles);
+                        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(_context,R.layout.support_simple_spinner_dropdown_item,titles);
                         ListView listNewNews= (ListView) _activity.findViewById(R.id.listViewNews);
 
-                        listNewNews.setAdapter(adapter);
+                        SharedData.adapter=adapter;
+
+                        listNewNews.setAdapter(SharedData.adapter);
+
 
                         if(_swipeRefresh!=null) {
                             _swipeRefresh.setRefreshing(false);
 
                         }
+
                     }
 
                     @Override
