@@ -1,7 +1,9 @@
 package maleev.konstantin.f1newsrssreader;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +11,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
 import android.widget.ShareActionProvider;
 
 public class PageActivity extends AppCompatActivity {
 
     private ShareActionProvider mShareActionProvider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +42,23 @@ public class PageActivity extends AppCompatActivity {
             }
         });
 */
+
+
         Intent intent=getIntent();
         String url=intent.getStringExtra("url");
 
         if(url==null)
             return;
 
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setUseWideViewPort(true);
+        setUpWebViewDefaults(webView);
+        setUseTextAutoSize(webView,true);
+//        webView.getSettings().setBuiltInZoomControls(true);
+//        webView.getSettings().setLoadWithOverviewMode(true);
+//        webView.getSettings().setUseWideViewPort(true);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            webView.getSettings().setLayoutAlgorithm(LayoutAlgorithm.TEXT_AUTOSIZING);
+//        }
+
 
         try {
             webView.loadUrl(url);
@@ -56,6 +69,42 @@ public class PageActivity extends AppCompatActivity {
         }
 
     }
+
+    private void setUpWebViewDefaults(WebView webView) {
+        WebSettings settings = webView.getSettings();
+
+        // Enable Javascript
+        settings.setJavaScriptEnabled(true);
+
+        // Use WideViewport and Zoom out if there is no viewport defined
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+
+        // Enable pinch to zoom without the zoom buttons
+        settings.setBuiltInZoomControls(true);
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            // Hide the zoom controls for HONEYCOMB+
+            settings.setDisplayZoomControls(false);
+        }
+    }
+
+
+    // Change the layout algorithm used in the WebView
+    private void setUseTextAutoSize(WebView mWebView, boolean useAlgorithm) {
+        WebSettings settings = mWebView.getSettings();
+
+        LayoutAlgorithm layoutAlgorithm = LayoutAlgorithm.NORMAL;
+        if(useAlgorithm) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                layoutAlgorithm = LayoutAlgorithm.TEXT_AUTOSIZING;
+            }
+        }
+
+        settings.setLayoutAlgorithm(layoutAlgorithm);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
